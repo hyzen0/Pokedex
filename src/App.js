@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllPokemon, getPokemon } from "./services/pokemon";
-import Card from './com'
+import Card from "./components/Card";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -35,19 +35,21 @@ function App() {
   };
 
   console.log(pokemonData);
-  return(
-     <div>
-     {
-       loading ? <h1>Loading...</h1> : (
-         <><div className="grid-container">{
-         pokemonData.map((pokemon, i ) => {
-           return <Card key={i} pokemon= {pokemon}/>
-         }
-        }
-         </div></>
-       )
-    }
-     </div>;
-  )}
+  return (
+    <div>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <div className="grid-container">
+            {pokemonData.map((pokemon, i) => {
+              return <Card key={i} pokemon={pokemon} />;
+            })}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default App;
