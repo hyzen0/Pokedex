@@ -16,10 +16,18 @@ function App() {
       console.log(response);
       setNextUrl(response.next);
       setPrevUrl(response.previous);
+      await loadingPokemon(response.results);
       setLoading(false);
     }
     fetchData();
   }, []);
+  const loadingPokemon = async data => {
+    let _pokemon = await Promise.all(
+      data.map(async pokemon => {
+        let pokemonRecord = await getPokemon(pokemon);
+      })
+    );
+  };
   return <div>{loading ? <h1>Loading...</h1> : <h1>Data is fetched</h1>}</div>;
 }
 
