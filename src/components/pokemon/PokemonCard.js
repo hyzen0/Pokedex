@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import styled from "styled-components";
+
 import spinner from "../layout/spinner.gif";
 
 const Sprite = styled.img`
@@ -34,22 +36,26 @@ const StyledLink = styled(Link)`
     text-decoration: none;
   }
 `;
+
 export default class PokemonCard extends Component {
   state = {
     name: "",
     imageUrl: "",
     pokemonIndex: "",
+    imageLoading: true,
+    toManyRequests: false,
   };
+
   componentDidMount() {
     const { name, url } = this.props;
+
     const pokemonIndex = url.split("/")[url.split("/").length - 2];
+    //const imageUrl = `./sprites/pokemon/${pokemonIndex}.png`;
     const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true`;
-    this.setState({
-      name,
-      imageUrl,
-      pokemonIndex,
-    });
+
+    this.setState({ name, imageUrl, pokemonIndex });
   }
+
   render() {
     return (
       <div className="col-md-3 col-sm-6 mb-5">
@@ -76,15 +82,19 @@ export default class PokemonCard extends Component {
                   : { display: "block" }
               }
             />
+            {this.state.toManyRequests ? (
+              <h6 className="mx-auto">
+                <span className="badge badge-danger mt-2">
+                  To Many Requests
+                </span>
+              </h6>
+            ) : null}
             <div className="card-body mx-auto">
               <h6 className="card-title">
                 {this.state.name
                   .toLowerCase()
                   .split(" ")
-                  .map(
-                    letter =>
-                      letter.charAt(0).toUpperCase() + letter.substring(1)
-                  )
+                  .map(s => s.charAt(0).toUpperCase() + s.substring(1))
                   .join(" ")}
               </h6>
             </div>

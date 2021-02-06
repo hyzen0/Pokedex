@@ -462,12 +462,7 @@ export default class Pokemon extends Component {
               </div>
             </div>
           </div>
-          <div class="card-footer text-muted">
-            Data From{" "}
-            <a href="https://pokeapi.co/" target="_blank" className="card-link">
-              PokeAPI.co
-            </a>
-          </div>
+          <div class="card-footer text-muted">Hyzen</div>
         </div>
       </div>
     );
