@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { getAllPokemon } from "./services/pokemon";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
   const [pokemonData, setPokemonData] = useState([]);
   const [nextUrl, setNextUrl] = useState("");
-  const [preUrl, setPreUrl] = useState("");
+  const [prevUrl, setPrevUrl] = useState("");
   const [loading, setLoading] = useState(true);
-  const intialUrl = "https://pokeapi.co/api/v2/pokemon";
+  const initialUrl = "https://pokeapi.co/api/v2/pokemon";
 
-  useEffect(() =>{
-    async fetchData() {
-      let response = await getAllPokemon( initialUrl)
+  useEffect(() => {
+    async function fetchData() {
+      let response = await getAllPokemon(initialUrl);
+      console.log(response);
+      setNextUrl(response.next);
+      setPrevUrl(response.previous);
+      setLoading(false);
     }
-  }, [])
-  return <div></div>;
+    fetchData();
+  }, []);
+  return <div>{loading ? <h1>Loading...</h1> : <h1>Data is fetched</h1>}</div>;
 }
 
 export default App;
