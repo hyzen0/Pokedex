@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 import PokemonCard from "./PokemonCard";
-export default class PokemonLIst extends Component {
+export default class PokemonList extends Component {
   state = {
     url: "https://pokeapi.co/api/v2/pokemon",
     pokemon: null,
@@ -13,16 +15,21 @@ export default class PokemonLIst extends Component {
 
   render() {
     return (
-      <div className="row">
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
-      </div>
+      <React.Fragment>
+        {this.state.pokemon ? (
+          <div className="row">
+            {this.state.pokemon.map(pokemon => (
+              <PokemonCard
+                key={pokemon.name}
+                name={pokemon.name}
+                url={pokemon.url}
+              />
+            ))}
+          </div>
+        ) : (
+          <h1> Loading Pokemon</h1>
+        )}
+      </React.Fragment>
     );
   }
 }
