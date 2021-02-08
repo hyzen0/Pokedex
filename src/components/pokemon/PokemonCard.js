@@ -9,7 +9,7 @@ const Sprite = styled.img`
 `;
 
 const Card = styled.div`
-  opacity: 0.95;
+  opacity: 1;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   &:hover {
@@ -39,7 +39,7 @@ function PokemonCard({ pokemon, number }) {
     <div className="col-md-3 col-sm-6 mb-5">
       <StyledLink to={`pokemon/${number}`}>
         <Card className="Card">
-          <h5 className="card-header">{}</h5>
+          <h5 className="card-header">{number}</h5>
           <Sprite
             className="card-img-top rounded mx-auto mt-2"
             src={pokemon.sprites.front_default}

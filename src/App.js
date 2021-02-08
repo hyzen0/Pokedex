@@ -84,13 +84,6 @@ function App() {
                     return <Card key={i} pokemon={pokemon} number={i + 1} />;
                   })}
                 </div>
-                <Switch>
-                  <Route
-                    exact
-                    path="/pokemon/:pokemonIndex"
-                    component={Pokemon}
-                  />
-                </Switch>
                 <div className="btn">
                   <button onClick={prev}>Prev</button>
                   <button onClick={next}>Next</button>
