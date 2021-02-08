@@ -67,34 +67,38 @@ function App() {
     <Router>
       <div className="App" style={{ background: `url(${backgroundImage})` }}>
         <NavBar />
-        <div>
-          {loading ? (
-            <h1 style={{ textAlign: "center" }}>Loading...</h1>
-          ) : (
-            <>
-              <div className="btn">
-                <button onClick={prev}>Prev</button>
-                <button onClick={next}>Next</button>
-              </div>
-              <div className="row">
-                {pokemonData.map((pokemon, i) => {
-                  return <Card key={i} pokemon={pokemon} number={i} />;
-                })}
-              </div>
-              <Switch>
-                <Route
-                  exact
-                  path="/pokemon/:pokemonIndex"
-                  component={Pokemon}
-                />
-              </Switch>
-              <div className="btn">
-                <button onClick={prev}>Prev</button>
-                <button onClick={next}>Next</button>
-              </div>
-            </>
-          )}
-        </div>
+        <Switch>
+          <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
+
+          <div>
+            {loading ? (
+              <h1 style={{ textAlign: "center" }}>Loading...</h1>
+            ) : (
+              <>
+                <div className="btn">
+                  <button onClick={prev}>Prev</button>
+                  <button onClick={next}>Next</button>
+                </div>
+                <div className="row">
+                  {pokemonData.map((pokemon, i) => {
+                    return <Card key={i} pokemon={pokemon} number={i + 1} />;
+                  })}
+                </div>
+                <Switch>
+                  <Route
+                    exact
+                    path="/pokemon/:pokemonIndex"
+                    component={Pokemon}
+                  />
+                </Switch>
+                <div className="btn">
+                  <button onClick={prev}>Prev</button>
+                  <button onClick={next}>Next</button>
+                </div>
+              </>
+            )}
+          </div>
+        </Switch>
       </div>
     </Router>
   );
