@@ -76,8 +76,12 @@ function App() {
             ) : (
               <>
                 <div className="btn">
-                  <button onClick={prev}>Prev</button>
-                  <button onClick={next}>Next</button>
+                  <button type="button" class="btn btn-danger" onClick={prev}>
+                    Prev
+                  </button>
+                  <button type="button" class="btn btn-warning" onClick={next}>
+                    Next
+                  </button>
                 </div>
                 <div className="row">
                   {pokemonData.map((pokemon, i) => {
@@ -85,8 +89,12 @@ function App() {
                   })}
                 </div>
                 <div className="btn">
-                  <button onClick={prev}>Prev</button>
-                  <button onClick={next}>Next</button>
+                  <button type="button" class="btn btn-danger" onClick={prev}>
+                    Prev
+                  </button>
+                  <button type="button" class="btn btn-warning" onClick={next}>
+                    Next
+                  </button>
                 </div>
               </>
             )}

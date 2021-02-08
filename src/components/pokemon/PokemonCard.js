@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
+
 const Sprite = styled.img`
   width: 5em;
   height: 5em;
@@ -38,21 +39,42 @@ function PokemonCard({ pokemon, number }) {
   return (
     <div className="col-md-3 col-sm-6 mb-5">
       <StyledLink to={`pokemon/${number}`}>
-        <Card className="Card">
+        <Card className="card">
           <h5 className="card-header">{number}</h5>
           <Sprite
             className="card-img-top rounded mx-auto mt-2"
             src={pokemon.sprites.front_default}
             style={{ display: "block" }}
           />
-
-          <h6 className="card-title">
-            {pokemon.name
-              .toLowerCase()
-              .split(" ")
-              .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-              .join(" ")}
-          </h6>
+          <div className="card-body mx-auto">
+            <h4 className="card-title">
+              <b>
+                {" "}
+                {pokemon.name
+                  .toLowerCase()
+                  .split(" ")
+                  .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                  .join(" ")}
+              </b>
+            </h4>
+            <div className="Card__info">
+              <div className="Card__data Card__data--weight">
+                <p className="title">
+                  <b>Weight:</b> {pokemon.weight}
+                </p>
+              </div>
+              <div className="Card__data Card__data--weight">
+                <p className="title">
+                  <b>Height:</b> {pokemon.height}
+                </p>
+              </div>
+              <div className="Card__data Card__data--ability">
+                <p className="title">
+                  <b>Ability:</b> {pokemon.abilities[0].ability.name}
+                </p>
+              </div>
+            </div>
+          </div>
         </Card>
       </StyledLink>
     </div>
